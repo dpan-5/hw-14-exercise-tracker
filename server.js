@@ -30,12 +30,6 @@ connection.on("error", (err) => {
   console.log("Mongoose connection error: ", err);
 });
 
-app.get("/api/config", (req, res) => {
-  res.json({
-    success: true,
-  });
-});
-
 app.use(workoutController);
 
 app.listen(PORT, () => {
