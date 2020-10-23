@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
-// const path = require("path");
+const path = require("path"); // for view routes
+
 
 const db = require("../models");
 
+// API ROUTES ========================================================
 router.get("/api/workouts", (req, res) => {
   db.Workout.find({})
     .then((workout) => {
@@ -38,15 +40,31 @@ router.put("/api/workouts/:id", (req, res) => {
     });
 });
 
-router.get("/api/workouts/range", (req, res) => {
-  db.Workout.find({})
-    .limit(7)
-    .then((foundWorkout) => {
-      res.json(foundWorkout);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
+// router.get("/api/workouts/range", (req, res) => {
+//   db.Workout.find({})
+//     .limit(7)
+//     .then((foundWorkout) => {
+//       res.json(foundWorkout);
+//     })
+//     .catch((err) => {
+//       res.json(err);
+//     });
+// });
+
+// VIEW ROUTES =======================================================
+router.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
 });
+
+router.get("/exercise", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/exercise.html"));
+});
+
+router.get("/stats", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/stats.html"));
+});
+
+
+
 
 module.exports = router;
