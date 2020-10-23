@@ -40,16 +40,16 @@ router.put("/api/workouts/:id", (req, res) => {
     });
 });
 
-// router.get("/api/workouts/range", (req, res) => {
-//   db.Workout.find({})
-//     .limit(7)
-//     .then((foundWorkout) => {
-//       res.json(foundWorkout);
-//     })
-//     .catch((err) => {
-//       res.json(err);
-//     });
-// });
+router.get("/api/workouts/range", (req, res) => {
+  db.Workout.find({})
+    .limit(7)
+    .then((foundWorkout) => {
+      res.json(foundWorkout);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
 
 // VIEW ROUTES =======================================================
 router.get("/", (req, res) => {
@@ -63,8 +63,5 @@ router.get("/exercise", function (req, res) {
 router.get("/stats", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/stats.html"));
 });
-
-
-
 
 module.exports = router;
