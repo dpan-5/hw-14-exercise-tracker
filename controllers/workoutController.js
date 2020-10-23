@@ -42,7 +42,6 @@ router.put("/api/workouts/:id", (req, res) => {
 
 router.get("/api/workouts/range", (req, res) => {
   db.Workout.find({})
-    .limit(7)
     .then((foundWorkout) => {
       res.json(foundWorkout);
     })
@@ -50,6 +49,7 @@ router.get("/api/workouts/range", (req, res) => {
       res.json(err);
     });
 });
+
 
 // VIEW ROUTES =======================================================
 router.get("/", (req, res) => {
