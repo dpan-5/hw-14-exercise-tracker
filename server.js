@@ -6,8 +6,6 @@ const PORT = process.env.PORT || 3000;
 
 const workoutController = require("./controllers/workoutController");
 
-app.use(workoutController);
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
@@ -31,6 +29,8 @@ connection.on("connected", () => {
 connection.on("error", (err) => {
   console.log("Mongoose connection error: ", err);
 });
+
+app.use(workoutController);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
